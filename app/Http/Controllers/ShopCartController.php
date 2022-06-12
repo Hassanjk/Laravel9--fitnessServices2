@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Service;
 use App\Models\ShopCart;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +28,7 @@ class ShopCartController extends Controller
         //
 
         $data = ShopCart::where('user_id', Auth::id())->get();
-        return view('Front-page.user.shopcart', [
+        return view('Front-page.user.subscription', [
             'data' => $data
         ]);
     }
@@ -50,7 +51,7 @@ class ShopCartController extends Controller
      */
     public function store(Request $request)
     {
-
+//        dd($request);
         $id = $request->id;
 
         $data = ShopCart::where('product_id', $id)->where('user_id', Auth::id())->first();
